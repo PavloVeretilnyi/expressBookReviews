@@ -25,9 +25,7 @@ public_users.post("/register", (req,res) => {
 
 // Get the book list available in the shop
 public_users.get('/',function (req, res) {
-
     //res.send(JSON.stringify(books,null,4));
-
     //same functionality but with Promise based implementation:
     const getBooks = new Promise((resolve, reject) => {
         if (books) {
@@ -36,7 +34,7 @@ public_users.get('/',function (req, res) {
         reject("No books available");
         }
     });
-    
+
     getBooks
     .then(result => {
       res.send(JSON.stringify(result, null, 4));
@@ -49,10 +47,9 @@ public_users.get('/',function (req, res) {
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn',function (req, res) {
     // Retrieve the ISBN parameter from the request URL and send the corresponding books's details
-    /*const isbn = req.params.isbn;
-    res.send(books[isbn])*/
-    //same functionality but with Promise based implementation
     const isbn = req.params.isbn;
+    //res.send(books[isbn])
+    //same functionality but with Promise based implementation
     const getBookByISBN = new Promise((resolve, reject) => {
       const book = books[isbn];
       if (book) {
